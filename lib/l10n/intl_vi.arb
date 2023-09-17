@@ -1,0 +1,11 @@
+{
+  "@@locale": "vi",
+  "hello": "Xin chào tất cả các bạn",
+  "change_language": "đổi ngôn ngữ",
+  "dark_mode": "Chế Độ Tối",
+
+  "username": "Tên Đăng Nhập",
+
+  "login": "Đăng Nhập",
+  "logout": "Đăng Xuất"
+}

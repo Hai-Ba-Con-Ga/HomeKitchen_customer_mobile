@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "hello": "Hello everybody",
+  "change_language": "change language",
+  "dark_mode": "Dark mode",
+
+  "username": "username",
+
+  "login": "Login",
+  "logout": "Logout"
+}
