@@ -4,7 +4,6 @@ import 'package:homekitchen_customer_mobile/app_setting.dart';
 import 'package:homekitchen_customer_mobile/main.dart';
 
 import 'package:homekitchen_customer_mobile/generated/l10n.dart';
-import 'package:provider/provider.dart';
 import '../lang_setting.dart';
 
 class SettingPage extends StatefulWidget {
@@ -20,24 +19,21 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       body: ListView(
         children: <Widget>[
-          ElevatedButton(onPressed: () => showLanguage(context), child:
-          Row(
-              children: <Widget>[
+          ElevatedButton(
+              onPressed: () => showLanguage(context),
+              child: Row(children: <Widget>[
                 Icon(Icons.language),
                 SizedBox(width: 10),
-                Text(S.of(context).change_language, style: TextStyle(fontSize: 25))
-              ]
-          )
-          ),
-          ElevatedButton(onPressed: null, child:
-          Row(
-              children: <Widget>[
-                Icon(Icons.dark_mode),
-                SizedBox(width: 10),
-                Text(S.of(context).dark_mode, style: TextStyle(fontSize: 25))
-              ]
-          ),
-
+                Text(S.of(context).change_language,
+                    style: TextStyle(fontSize: 25))
+              ])),
+          ElevatedButton(
+            onPressed: null,
+            child: Row(children: <Widget>[
+              Icon(Icons.dark_mode),
+              SizedBox(width: 10),
+              Text(S.of(context).dark_mode, style: TextStyle(fontSize: 25))
+            ]),
           ),
         ],
       ),
@@ -50,8 +46,8 @@ class _SettingPageState extends State<SettingPage> {
         Text("en", style: TextStyle(fontSize: 30)),
         Text("vi", style: TextStyle(fontSize: 30)),
       ],
-      title:  "Choose your country",
-      titleStyle:  TextStyle(fontWeight:  FontWeight.bold, fontSize:  15),
+      title: "Choose your country",
+      titleStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
       onSubmit: (index) => changeLanguage(index),
     ).show(context);
   }
@@ -63,5 +59,4 @@ class _SettingPageState extends State<SettingPage> {
       LangSetting.changeLang(langs.elementAt(index));
     });
   }
-
 }

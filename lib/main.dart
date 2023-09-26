@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:homekitchen_customer_mobile/app_setting.dart';
 import 'package:homekitchen_customer_mobile/respositories//login_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,10 +11,7 @@ import 'lang_setting.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Locale hehe = await LangSetting.getLangLocale();
-  runApp(ChangeNotifierProvider(
-      create: (context) => AppSetting(),
-      child: MyApp(langLocale: hehe)
-  ));
+  runApp(MyApp(langLocale: hehe));
   // runApp(HomePage());
 }
 
@@ -27,9 +25,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mom Kitchen',
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
+        textTheme: GoogleFonts.signikaTextTheme(),
         useMaterial3: true,
       ),
+      darkTheme: ThemeData(),
+      themeMode: (ThemeMode.system),
       home: const LoginPage(title: 'Sign In'),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
