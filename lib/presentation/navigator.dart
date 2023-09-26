@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:homekitchen_customer_mobile/respositories/notification_page.dart';
-import 'package:homekitchen_customer_mobile/respositories/setting_page.dart';
+import 'package:homekitchen_customer_mobile/presentation/notification_page.dart';
+import 'package:homekitchen_customer_mobile/presentation/setting_page.dart';
 
 class FooterBar extends StatefulWidget {
   const FooterBar({super.key});
@@ -18,22 +18,6 @@ class _FooterBarState extends State<FooterBar> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  Container disableIcon(Widget icon) {
-    return Container(
-        // padding: EdgeInsets.all(8.0), // Kích thước viền
-        // decoration: BoxDecoration(
-        //   shape: BoxShape.circle, // Hình dạng của viền (hình tròn)
-        //   color: Colors.white, // Màu nền của viền
-        //   boxShadow: const [
-        //     BoxShadow(
-        //       color: Colors.black, // Màu của viền đen
-        //       blurRadius: 5.0, // Độ mờ
-        //     ),
-        //   ],
-        // ),
-        child: icon);
   }
 
   @override
@@ -85,7 +69,7 @@ class _FooterBarState extends State<FooterBar> {
                 24.0,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: disableIcon(Icon(Icons.home)),
+            icon: Icon(Icons.home),
             label: 'Home',
             // backgroundColor: Colors.lightBlueAccent,
           ),

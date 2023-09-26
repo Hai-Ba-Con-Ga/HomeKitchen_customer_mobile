@@ -1,46 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homekitchen_customer_mobile/app_setting.dart';
-import 'package:homekitchen_customer_mobile/respositories//login_page.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:homekitchen_customer_mobile/respositories/navigator.dart';
-import 'package:homekitchen_customer_mobile/generated/l10n.dart';
+import 'package:homekitchen_customer_mobile/presentation/login_page.dart';
+import 'package:homekitchen_customer_mobile/presentation/navigator.dart';
+import 'package:homekitchen_customer_mobile/utils/theme.dart';
 import 'package:provider/provider.dart';
-import 'lang_setting.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Locale hehe = await LangSetting.getLangLocale();
-  runApp(MyApp(langLocale: hehe));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  runApp(MyApp());
   // runApp(HomePage());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.langLocale});
-
-  final Locale langLocale;
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mom Kitchen',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
-        textTheme: GoogleFonts.signikaTextTheme(),
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData(),
-      themeMode: (ThemeMode.system),
-      home: const LoginPage(title: 'Sign In'),
+      theme: mainTheme,
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: langLocale,
     );
   }
 }
