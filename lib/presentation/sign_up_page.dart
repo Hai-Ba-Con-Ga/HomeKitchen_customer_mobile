@@ -138,7 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         stream: _loginBloc.rePassStream,
                         builder: (context, snapshot) => TextField(
                           obscureText: !_showRePassword,
-                          controller: _passwordController,
+                          controller: _rePasswordController,
                           decoration: InputDecoration(
                             errorText: snapshot.hasError ? snapshot.error.toString() : null,
                             labelText: "Re-enter Password",
@@ -259,14 +259,16 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void onSignUpClick() {
     /*check input valid*/
-    registerUser("email123@gmail.com", "123456");
-    if (_loginBloc.isValidInfo(_usernameController.text, _passwordController.text)) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const FooterBar(),
-        ),
-      );
+    if (_passwordController.text == _rePasswordController.text) {
+      registerUser("email123@gmail.com", "123456");
+      if (_loginBloc.isValidInfo(_usernameController.text, _passwordController.text)) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const FooterBar(),
+          ),
+        );
+      }
     }
   }
 
