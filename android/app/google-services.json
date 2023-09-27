@@ -1,76 +1,40 @@
 {
   "project_info": {
-    "project_number": "370246303311",
-    "project_id": "momkitchenmobile",
-    "storage_bucket": "momkitchenmobile.appspot.com"
+    "project_number": "589652830174",
+    "project_id": "momkitchen-41f2b",
+    "storage_bucket": "momkitchen-41f2b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:370246303311:android:ee5358728643a5e775743a",
+        "mobilesdk_app_id": "1:589652830174:android:8e006943b513b521b55f4f",
         "android_client_info": {
           "package_name": "com.chickies.homekitchen_customer_mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "370246303311-5n87fkcfp20vdjjbo4681sbglnop6j0d.apps.googleusercontent.com",
+          "client_id": "589652830174-9qhor979afjutqadrpniiu7onojki4mo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCzy5jQtT0SnfDJFqAVLm_qIJJkzD7xzZU"
+          "current_key": "AIzaSyAcoXBQQTExmu2OdO-OoAO1e-S6d-JEbrI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "370246303311-5n87fkcfp20vdjjbo4681sbglnop6j0d.apps.googleusercontent.com",
+              "client_id": "589652830174-9qhor979afjutqadrpniiu7onojki4mo.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "370246303311-7na44v4n77vnar6qqvtlnfqvujtaufgs.apps.googleusercontent.com",
+              "client_id": "589652830174-rgua29692blgi6nuluvm4f3ohiurgp4e.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.chickies.momkitchenCustomerMobile"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:370246303311:android:fbe325d8170460ca75743a",
-        "android_client_info": {
-          "package_name": "com.chickies.momkitchen_customer_mobile"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "370246303311-5n87fkcfp20vdjjbo4681sbglnop6j0d.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCzy5jQtT0SnfDJFqAVLm_qIJJkzD7xzZU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "370246303311-5n87fkcfp20vdjjbo4681sbglnop6j0d.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "370246303311-7na44v4n77vnar6qqvtlnfqvujtaufgs.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.chickies.momkitchenCustomerMobile"
+                "bundle_id": "com.haibaconga.momkitchen"
               }
             }
           ]

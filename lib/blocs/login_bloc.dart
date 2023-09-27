@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:homekitchen_customer_mobile/validators/validations.dart';
 
-class LoginBloc {
+class AuthBloc {
   StreamController _userController = new StreamController();
   StreamController _passController = new StreamController();
+  StreamController _rePassController = new StreamController();
 
   Stream get userStream => _userController.stream;
   Stream get passStream => _passController.stream;
+  Stream get rePassStream => _rePassController.stream;
 
   bool isValidInfo(String user, String pass) {
     if (!Validations.isValidUser(user)) {

@@ -1,23 +1,23 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:homekitchen_customer_mobile/domain/auth/authentication.dart';
 import 'package:homekitchen_customer_mobile/blocs/login_bloc.dart';
+import 'package:homekitchen_customer_mobile/presentation/login_page.dart';
 import 'package:homekitchen_customer_mobile/presentation/navigator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:homekitchen_customer_mobile/presentation/sign_up_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   bool _showPassword = false;
+  bool _showRePassword = false;
   AuthBloc _loginBloc = new AuthBloc();
   TextEditingController _usernameController = TextEditingController(text: "nmhung");
   TextEditingController _passwordController = TextEditingController(text: "nmhung");
+  TextEditingController _rePasswordController = TextEditingController(text: "nmhung");
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 /*password input*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+                  padding: EdgeInsets.fromLTRB(
+                    50,
+                    10,
+                    50,
+                    10,
+                  ),
                   child: Stack(
                     alignment: AlignmentDirectional.centerEnd,
                     children: <Widget>[
@@ -118,6 +123,44 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
+                /*password input*/
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    50,
+                    10,
+                    50,
+                    10,
+                  ),
+                  child: Stack(
+                    alignment: AlignmentDirectional.centerEnd,
+                    children: <Widget>[
+                      StreamBuilder(
+                        stream: _loginBloc.rePassStream,
+                        builder: (context, snapshot) => TextField(
+                          obscureText: !_showRePassword,
+                          controller: _passwordController,
+                          decoration: InputDecoration(
+                            errorText: snapshot.hasError ? snapshot.error.toString() : null,
+                            labelText: "Re-enter Password",
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: onToggleShowRePassword,
+                        child: Text(
+                          !_showRePassword ? "Show" : "Hide",
+                          style: TextStyle(
+                            color: Colors.lightBlueAccent,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 /*sign in button*/
                 Padding(
                   padding: EdgeInsets.fromLTRB(
@@ -129,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: onSignInClick,
+                      onPressed: onSignUpClick,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
@@ -147,13 +190,13 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () => Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignUpPage(),
+                      builder: (context) => const LoginPage(),
                     ),
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("New user? Sign Up"),
+                      Text("Already have an account? Login"),
                       Text("Forgot password?"),
                     ],
                   ),
@@ -214,34 +257,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void onSignInClick() async {
+  void onSignUpClick() {
     /*check input valid*/
-
-    if (_loginBloc.isValidInfo(
-      _usernameController.text,
-      _passwordController.text,
-    )) {
-      final _isLoginSuccess = await login("email123@gmail.com", "123456");
-      if (_isLoginSuccess) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const FooterBar(),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Login Unsuccessful"),
-          ),
-        );
-      }
+    registerUser("email123@gmail.com", "123456");
+    if (_loginBloc.isValidInfo(_usernameController.text, _passwordController.text)) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const FooterBar(),
+        ),
+      );
     }
   }
 
   void onToggleShowPassword() {
     setState(() {
       _showPassword = !_showPassword;
+    });
+  }
+
+  void onToggleShowRePassword() {
+    setState(() {
+      _showRePassword = !_showRePassword;
     });
   }
 }

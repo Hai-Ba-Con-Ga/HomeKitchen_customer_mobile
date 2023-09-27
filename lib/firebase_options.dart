@@ -17,16 +17,16 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -49,21 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDA7d1F0mtN6Qp_NI_q4U49EzylXHND0No',
-    appId: '1:370246303311:web:9a21ac35bcd8db0375743a',
-    messagingSenderId: '370246303311',
-    projectId: 'momkitchenmobile',
-    authDomain: 'momkitchenmobile.firebaseapp.com',
-    storageBucket: 'momkitchenmobile.appspot.com',
-    measurementId: 'G-XMF2BNNYG3',
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyAcoXBQQTExmu2OdO-OoAO1e-S6d-JEbrI',
+    appId: '1:589652830174:android:8e006943b513b521b55f4f',
+    messagingSenderId: '589652830174',
+    projectId: 'momkitchen-41f2b',
+    storageBucket: 'momkitchen-41f2b.appspot.com',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCzy5jQtT0SnfDJFqAVLm_qIJJkzD7xzZU',
-    appId: '1:370246303311:android:ee5358728643a5e775743a',
-    messagingSenderId: '370246303311',
-    projectId: 'momkitchenmobile',
-    storageBucket: 'momkitchenmobile.appspot.com',
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDQeBGTf1p7XSVbLKVgCQuuYUbVURGuf_g',
+    appId: '1:589652830174:ios:c8d93aedc4b218fab55f4f',
+    messagingSenderId: '589652830174',
+    projectId: 'momkitchen-41f2b',
+    storageBucket: 'momkitchen-41f2b.appspot.com',
+    iosClientId: '589652830174-eoile501rlkp4pvpppe992soarq6t221.apps.googleusercontent.com',
+    iosBundleId: 'com.chickies.homekitchenCustomerMobile',
   );
 }
