@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:homekitchen_customer_mobile/validators/validations.dart';
+import '../validators/validations.dart';
 
 class AuthBloc {
-  StreamController _userController = new StreamController();
-  StreamController _passController = new StreamController();
-  StreamController _rePassController = new StreamController();
+  final StreamController _userController = StreamController();
+  final StreamController _passController = StreamController();
+  final StreamController _rePassController = StreamController();
 
   Stream get userStream => _userController.stream;
   Stream get passStream => _passController.stream;
@@ -13,15 +13,15 @@ class AuthBloc {
 
   bool isValidInfo(String user, String pass) {
     if (!Validations.isValidUser(user)) {
-      _userController.sink.addError("Tài khoản không hợp lệ");
+      _userController.sink.addError('Tài khoản không hợp lệ');
       return false;
     }
-    _userController.sink.add("OK");
+    _userController.sink.add('OK');
     if (!Validations.isValidPass(pass)) {
-      _passController.sink.addError("Mật khẩu không hợp lệ");
+      _passController.sink.addError('Mật khẩu không hợp lệ');
       return false;
     }
-    _passController.sink.add("OK");
+    _passController.sink.add('OK');
     return true;
   }
 

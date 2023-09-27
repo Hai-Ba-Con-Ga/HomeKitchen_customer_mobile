@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:homekitchen_customer_mobile/presentation/notification_page.dart';
-import 'package:homekitchen_customer_mobile/presentation/setting_page.dart';
+import 'notification_page.dart';
+import 'setting_page.dart';
 
 class FooterBar extends StatefulWidget {
   const FooterBar({super.key});
@@ -36,7 +36,7 @@ class _FooterBarState extends State<FooterBar> {
         'user',
         style: optionStyle,
       ),
-      SettingPage(),
+      const SettingPage(),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -47,10 +47,10 @@ class _FooterBarState extends State<FooterBar> {
               Text('Mom kitchen', style: Theme.of(context).textTheme.titleLarge)
             ]),
         // automaticallyImplyLeading: false,
-        leading: Text(""),
+        leading: const Text(''),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               Navigator.push(
                   context,
@@ -67,7 +67,7 @@ class _FooterBarState extends State<FooterBar> {
         iconSize:
             Theme.of(context).textTheme.bodyMedium?.fontSize?.toDouble() ??
                 24.0,
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -91,7 +91,7 @@ class _FooterBarState extends State<FooterBar> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Color.fromARGB(255, 255, 215, 166),
+        unselectedItemColor: const Color.fromARGB(255, 255, 215, 166),
         onTap: _onItemTapped,
       ),
     );

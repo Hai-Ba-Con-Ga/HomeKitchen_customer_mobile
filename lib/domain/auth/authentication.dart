@@ -5,9 +5,9 @@ Future<void> registerUser(String email, String password) async {
     UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
-    print("User registered with ID: ${user?.uid}");
+    print('User registered with ID: ${user?.uid}');
   } catch (e) {
-    print("Error registering user: $e");
+    print('Error registering user: $e');
   }
 }
 

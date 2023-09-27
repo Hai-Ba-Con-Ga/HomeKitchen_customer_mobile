@@ -10,7 +10,7 @@ class NotificationPage extends StatefulWidget {
 class NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Center(
       child: Text('Notification'),
     ));

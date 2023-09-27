@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:homekitchen_customer_mobile/domain/auth/authentication.dart';
-import 'package:homekitchen_customer_mobile/blocs/login_bloc.dart';
-import 'package:homekitchen_customer_mobile/presentation/navigator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:homekitchen_customer_mobile/presentation/sign_up_page.dart';
+import '../domain/auth/authentication.dart';
+import '../blocs/login_bloc.dart';
+import 'navigator.dart';
+import 'sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,9 +14,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
-  AuthBloc _loginBloc = new AuthBloc();
-  TextEditingController _usernameController = TextEditingController(text: "nmhung");
-  TextEditingController _passwordController = TextEditingController(text: "nmhung");
+  final AuthBloc _loginBloc = AuthBloc();
+  final TextEditingController _usernameController = TextEditingController(text: 'nmhung');
+  final TextEditingController _passwordController = TextEditingController(text: 'nmhung');
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +46,14 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.lightBlueAccent,
                       ),
                     ),
-                    child: FlutterLogo(),
+                    child: const FlutterLogo(),
                   ),
                 ),
                 /*app name*/
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "MomKitchen",
+                    'MomKitchen',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.lightBlueAccent,
@@ -64,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 /*username input*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     10,
                     50,
@@ -76,8 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _usernameController,
                       decoration: InputDecoration(
                         errorText: snapshot.hasError ? snapshot.error.toString() : null,
-                        labelText: "Tên đăng nhập",
-                        labelStyle: TextStyle(
+                        labelText: 'Tên đăng nhập',
+                        labelStyle: const TextStyle(
                           color: Colors.grey,
                           fontSize: 15,
                         ),
@@ -87,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 /*password input*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+                  padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
                   child: Stack(
                     alignment: AlignmentDirectional.centerEnd,
                     children: <Widget>[
@@ -98,8 +97,8 @@ class _LoginPageState extends State<LoginPage> {
                           controller: _passwordController,
                           decoration: InputDecoration(
                             errorText: snapshot.hasError ? snapshot.error.toString() : null,
-                            labelText: "Password",
-                            labelStyle: TextStyle(
+                            labelText: 'Password',
+                            labelStyle: const TextStyle(
                               color: Colors.grey,
                               fontSize: 15,
                             ),
@@ -109,8 +108,8 @@ class _LoginPageState extends State<LoginPage> {
                       GestureDetector(
                         onTap: onToggleShowPassword,
                         child: Text(
-                          !_showPassword ? "Show" : "Hide",
-                          style: TextStyle(
+                          !_showPassword ? 'Show' : 'Hide',
+                          style: const TextStyle(
                             color: Colors.lightBlueAccent,
                           ),
                         ),
@@ -120,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 /*sign in button*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     10,
                     50,
@@ -133,8 +132,8 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
-                      child: Text(
-                        "Sign Up",
+                      child: const Text(
+                        'Sign In',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -153,15 +152,15 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("New user? Sign Up"),
-                      Text("Forgot password?"),
+                      Text('New user? Sign Up'),
+                      Text('Forgot password?'),
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
-                Text("Or"),
+                const SizedBox(height: 20),
+                const Text('Or'),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     2,
                     50,
@@ -174,8 +173,8 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
-                      child: Text(
-                        "Google",
+                      child: const Text(
+                        'Google',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -184,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     2,
                     50,
@@ -197,8 +196,8 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
-                      child: Text(
-                        "Facebook",
+                      child: const Text(
+                        'Facebook',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -214,16 +213,16 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void onSignInClick() async {
+  Future<void> onSignInClick() async {
     /*check input valid*/
 
     if (_loginBloc.isValidInfo(
       _usernameController.text,
       _passwordController.text,
     )) {
-      final _isLoginSuccess = await login("email123@gmail.com", "123456");
-      if (_isLoginSuccess) {
-        Navigator.push(
+      final isLoginSuccess = await login('email123@gmail.com', '123456');
+      if (isLoginSuccess) {
+        await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const FooterBar(),
@@ -232,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("Login Unsuccessful"),
+            content: Text('Login Unsuccessful'),
           ),
         );
       }

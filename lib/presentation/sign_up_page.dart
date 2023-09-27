@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:homekitchen_customer_mobile/domain/auth/authentication.dart';
-import 'package:homekitchen_customer_mobile/blocs/login_bloc.dart';
-import 'package:homekitchen_customer_mobile/presentation/login_page.dart';
-import 'package:homekitchen_customer_mobile/presentation/navigator.dart';
+import '../domain/auth/authentication.dart';
+import '../blocs/login_bloc.dart';
+import 'login_page.dart';
+import 'navigator.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -14,10 +14,10 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool _showPassword = false;
   bool _showRePassword = false;
-  AuthBloc _loginBloc = new AuthBloc();
-  TextEditingController _usernameController = TextEditingController(text: "nmhung");
-  TextEditingController _passwordController = TextEditingController(text: "nmhung");
-  TextEditingController _rePasswordController = TextEditingController(text: "nmhung");
+  final AuthBloc _loginBloc = AuthBloc();
+  final TextEditingController _usernameController = TextEditingController(text: 'nmhung');
+  final TextEditingController _passwordController = TextEditingController(text: 'nmhung');
+  final TextEditingController _rePasswordController = TextEditingController(text: 'nmhung');
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +47,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         color: Colors.lightBlueAccent,
                       ),
                     ),
-                    child: FlutterLogo(),
+                    child: const FlutterLogo(),
                   ),
                 ),
                 /*app name*/
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "MomKitchen",
+                    'MomKitchen',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.lightBlueAccent,
@@ -64,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 /*username input*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     10,
                     50,
@@ -76,8 +76,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       controller: _usernameController,
                       decoration: InputDecoration(
                         errorText: snapshot.hasError ? snapshot.error.toString() : null,
-                        labelText: "Tên đăng nhập",
-                        labelStyle: TextStyle(
+                        labelText: 'Tên đăng nhập',
+                        labelStyle: const TextStyle(
                           color: Colors.grey,
                           fontSize: 15,
                         ),
@@ -87,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 /*password input*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     10,
                     50,
@@ -103,8 +103,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: _passwordController,
                           decoration: InputDecoration(
                             errorText: snapshot.hasError ? snapshot.error.toString() : null,
-                            labelText: "Password",
-                            labelStyle: TextStyle(
+                            labelText: 'Password',
+                            labelStyle: const TextStyle(
                               color: Colors.grey,
                               fontSize: 15,
                             ),
@@ -114,8 +114,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       GestureDetector(
                         onTap: onToggleShowPassword,
                         child: Text(
-                          !_showPassword ? "Show" : "Hide",
-                          style: TextStyle(
+                          !_showPassword ? 'Show' : 'Hide',
+                          style: const TextStyle(
                             color: Colors.lightBlueAccent,
                           ),
                         ),
@@ -125,7 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 /*password input*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     10,
                     50,
@@ -141,8 +141,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: _rePasswordController,
                           decoration: InputDecoration(
                             errorText: snapshot.hasError ? snapshot.error.toString() : null,
-                            labelText: "Re-enter Password",
-                            labelStyle: TextStyle(
+                            labelText: 'Re-enter Password',
+                            labelStyle: const TextStyle(
                               color: Colors.grey,
                               fontSize: 15,
                             ),
@@ -152,8 +152,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       GestureDetector(
                         onTap: onToggleShowRePassword,
                         child: Text(
-                          !_showRePassword ? "Show" : "Hide",
-                          style: TextStyle(
+                          !_showRePassword ? 'Show' : 'Hide',
+                          style: const TextStyle(
                             color: Colors.lightBlueAccent,
                           ),
                         ),
@@ -163,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 /*sign in button*/
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     10,
                     50,
@@ -176,8 +176,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
-                      child: Text(
-                        "Sign Up",
+                      child: const Text(
+                        'Sign Up',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -196,15 +196,15 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("Already have an account? Login"),
-                      Text("Forgot password?"),
+                      Text('Already have an account? Login'),
+                      Text('Forgot password?'),
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
-                Text("Or"),
+                const SizedBox(height: 20),
+                const Text('Or'),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     2,
                     50,
@@ -217,8 +217,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
-                      child: Text(
-                        "Google",
+                      child: const Text(
+                        'Google',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -227,7 +227,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     50,
                     2,
                     50,
@@ -240,8 +240,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
-                      child: Text(
-                        "Facebook",
+                      child: const Text(
+                        'Facebook',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -260,7 +260,7 @@ class _SignUpPageState extends State<SignUpPage> {
   void onSignUpClick() {
     /*check input valid*/
     if (_passwordController.text == _rePasswordController.text) {
-      registerUser("email123@gmail.com", "123456");
+      registerUser('email123@gmail.com', '123456');
       if (_loginBloc.isValidInfo(_usernameController.text, _passwordController.text)) {
         Navigator.push(
           context,
