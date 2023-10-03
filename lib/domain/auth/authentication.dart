@@ -13,7 +13,10 @@ Future<void> registerUser(String email, String password) async {
 
 Future<bool> login(String email, String password) async {
   try {
-    final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
     if (credential.user != null) {
       return true;
     }

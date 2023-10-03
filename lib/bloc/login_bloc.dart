@@ -5,11 +5,9 @@ import '../validators/validations.dart';
 class AuthBloc {
   final StreamController _userController = StreamController();
   final StreamController _passController = StreamController();
-  final StreamController _rePassController = StreamController();
 
   Stream get userStream => _userController.stream;
   Stream get passStream => _passController.stream;
-  Stream get rePassStream => _rePassController.stream;
 
   bool isValidInfo(String user, String pass) {
     if (!Validations.isValidUser(user)) {

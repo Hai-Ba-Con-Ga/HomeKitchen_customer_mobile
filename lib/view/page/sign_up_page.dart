@@ -1,22 +1,23 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import '../domain/auth/authentication.dart';
-import '../blocs/login_bloc.dart';
-import 'navigator.dart';
-import 'sign_up_page.dart';
+import '../../domain/auth/authentication.dart';
+import '../../bloc/login_bloc.dart';
+import 'login_page.dart';
+import '../../presentation/navigator.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   bool _showPassword = false;
+  bool _showRePassword = false;
   final AuthBloc _loginBloc = AuthBloc();
-  final TextEditingController _usernameController = TextEditingController(text: 'nmhung');
-  final TextEditingController _passwordController = TextEditingController(text: 'nmhung');
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _rePasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 /*password input*/
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                  padding: const EdgeInsets.fromLTRB(
+                    50,
+                    10,
+                    50,
+                    10,
+                  ),
                   child: Stack(
                     alignment: AlignmentDirectional.centerEnd,
                     children: <Widget>[
@@ -117,6 +123,40 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
+                /*password input*/
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    50,
+                    10,
+                    50,
+                    10,
+                  ),
+                  child: Stack(
+                    alignment: AlignmentDirectional.centerEnd,
+                    children: <Widget>[
+                      TextField(
+                        obscureText: !_showRePassword,
+                        controller: _rePasswordController,
+                        decoration: const InputDecoration(
+                          labelText: 'Confirm Password',
+                          labelStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: onToggleShowRePassword,
+                        child: Text(
+                          !_showRePassword ? 'Show' : 'Hide',
+                          style: const TextStyle(
+                            color: Colors.lightBlueAccent,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 /*sign in button*/
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
@@ -128,12 +168,12 @@ class _LoginPageState extends State<LoginPage> {
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: onSignInClick,
+                      onPressed: onSignUpClick,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                       ),
                       child: const Text(
-                        'Sign In',
+                        'Sign Up',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -146,13 +186,13 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () => Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignUpPage(),
+                      builder: (context) => const LoginPage(),
                     ),
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('New user? Sign Up'),
+                      Text('Already have an account? Login'),
                       Text('Forgot password?'),
                     ],
                   ),
@@ -213,25 +253,15 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<void> onSignInClick() async {
+  void onSignUpClick() {
     /*check input valid*/
-
-    if (_loginBloc.isValidInfo(
-      _usernameController.text,
-      _passwordController.text,
-    )) {
-      final isLoginSuccess = await login('email123@gmail.com', '123456');
-      if (isLoginSuccess) {
-        await Navigator.push(
+    if (_passwordController.text == _rePasswordController.text) {
+      registerUser('email123@gmail.com', '123456');
+      if (_loginBloc.isValidInfo(_usernameController.text, _passwordController.text)) {
+        Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const FooterBar(),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Login Unsuccessful'),
           ),
         );
       }
@@ -241,6 +271,12 @@ class _LoginPageState extends State<LoginPage> {
   void onToggleShowPassword() {
     setState(() {
       _showPassword = !_showPassword;
+    });
+  }
+
+  void onToggleShowRePassword() {
+    setState(() {
+      _showRePassword = !_showRePassword;
     });
   }
 }
