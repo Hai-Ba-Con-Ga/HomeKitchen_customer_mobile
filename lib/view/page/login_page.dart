@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/base_state.dart';
+import '../../router/router.dart';
 import 'sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +21,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
   final AuthBloc _authBloc = AuthBloc();
+  // final TextEditingController _usernameController = TextEditingController(text: 'email123@gmail.com');
+  // final TextEditingController _passwordController = TextEditingController(text: '123456');
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -83,9 +86,15 @@ class _LoginPageState extends State<LoginPage> {
                 return;
               }
             }
+            context.go(
+              AppPath.home,
+            );
           }
         },
-        builder: (context, state) {
+        builder: (
+          context,
+          state,
+        ) {
           return GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => FocusScope.of(context).requestFocus(
@@ -136,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: TextField(
                         controller: _usernameController,
                         decoration: const InputDecoration(
-                          labelText: 'Tên đăng nhập',
+                          labelText: 'Email',
                           labelStyle: TextStyle(
                             color: Colors.grey,
                             fontSize: 15,
@@ -204,11 +213,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     /*other method login*/
                     GestureDetector(
-                      onTap: () => Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignUpPage(),
-                        ),
+                      onTap: () => context.go(
+                        AppPath.signUp,
                       ),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
