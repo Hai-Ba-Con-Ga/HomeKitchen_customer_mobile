@@ -203,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: Colors.lightBlue,
                           ),
                           child: const Text(
-                            'Sign In',
+                            'Login',
                             style: TextStyle(
                               color: Colors.white,
                             ),

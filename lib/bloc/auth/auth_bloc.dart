@@ -14,6 +14,10 @@ class AuthBloc extends BaseCubit {
   }) {
     var errorMessage = '';
 
+    if (password.isEmpty) {
+      errorMessage = 'Must input password';
+    }
+
     if (password != confirmPassword) {
       errorMessage = 'Password and Confirm Password are not matched';
     }
