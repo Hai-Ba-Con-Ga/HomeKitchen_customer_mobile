@@ -34,8 +34,11 @@ class _HomePageState extends State<HomePage> {
             ]),
         body: ListView(
           children: [
-            Button(),
-            Button(),
+            ButtonHomePage(
+              title: 'My Orders',
+              icon: Icons.assignment,
+            ),
+            ButtonHomePage(title: 'Select Location', icon: Icons.location_on),
             ListDish(title: 'Recent kitchen'),
             ListDish(title: 'Favorite kitchen'),
             ListDish(title: 'Top Trending kitchen'),

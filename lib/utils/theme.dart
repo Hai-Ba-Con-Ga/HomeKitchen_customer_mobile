@@ -8,10 +8,10 @@ final ThemeData mainTheme = ThemeData(
   textTheme: GoogleFonts.signikaTextTheme(),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+      backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
     ),

@@ -68,6 +68,7 @@ class _ListDishState extends State<ListDish> {
               },
               itemCount: 10),
         ),
+        SizedBox(height: 20),
       ],
     );
   }
