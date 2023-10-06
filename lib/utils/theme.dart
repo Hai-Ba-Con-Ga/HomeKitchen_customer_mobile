@@ -6,5 +6,15 @@ final ThemeData mainTheme = ThemeData(
     seedColor: Colors.orangeAccent,
   ),
   textTheme: GoogleFonts.signikaTextTheme(),
+  textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0),
+        ),
+      ),
+    ),
+  ),
   useMaterial3: true,
 );
