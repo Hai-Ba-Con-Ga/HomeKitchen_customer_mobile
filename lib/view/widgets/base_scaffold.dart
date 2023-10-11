@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../presentation/notification_page.dart';
 import '../../router/router.dart';
 
 class BaseScaffold extends StatefulWidget {

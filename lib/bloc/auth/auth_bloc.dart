@@ -87,6 +87,7 @@ class AuthBloc extends BaseCubit {
           isLoading: true,
         ),
       );
+
       final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,

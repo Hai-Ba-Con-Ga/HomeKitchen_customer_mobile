@@ -9,7 +9,6 @@ import 'package:go_router/go_router.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/base_state.dart';
 import '../../router/router.dart';
-import 'sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    _usernameController.text = "test123@gmail.com";
-    _passwordController.text = "test123";
+    _usernameController.text = 'test123@gmail.com';
+    _passwordController.text = 'test123';
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BlocConsumer(

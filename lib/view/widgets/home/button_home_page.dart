@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ButtonHomePage extends StatefulWidget {
@@ -24,9 +23,9 @@ class _ButtonHomePageState extends State<ButtonHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(widget.icon ?? Icons.numbers, color: Colors.white),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(widget.title ?? 'Null Title',
-                  style: TextStyle(color: Colors.white, fontSize: 20)),
+                  style: const TextStyle(color: Colors.white, fontSize: 20)),
             ],
           ),
         ));
