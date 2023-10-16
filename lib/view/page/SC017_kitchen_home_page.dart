@@ -16,7 +16,7 @@ class _KitchenHomeState extends State<KitchenHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Kitchen owner name"),
+        title: const Text('Kitchen owner name'),
       ),
       body: SingleChildScrollView(
           child: Column(

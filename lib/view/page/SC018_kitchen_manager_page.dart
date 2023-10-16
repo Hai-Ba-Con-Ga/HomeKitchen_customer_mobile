@@ -25,8 +25,8 @@ class KitchenManagerState extends State<KitchenManager> {
           leading: ButtonBack(onPressed: () => context.go(AppPath.home)),
           leadingWidth: 70,
           toolbarHeight: 80,
-          title: Text('Kitchen manager'),
-          bottom: TabBar(
+          title: const Text('Kitchen manager'),
+          bottom: const TabBar(
             labelColor: Color(0xFFFF7622),
             unselectedLabelColor: Color(0xFFA5A7B9),
             indicatorSize: TabBarIndicatorSize.tab,
@@ -34,14 +34,14 @@ class KitchenManagerState extends State<KitchenManager> {
             tabs: <Widget>[
               Tab(
                 // icon: Icon(Icons.cloud_outlined),
-                text: "Bữa ăn",
+                text: 'Bữa ăn',
               ),
               Tab(
                   // icon: Icon(Icons.beach_access_sharp),
-                  text: "Mâm cơm"),
+                  text: 'Mâm cơm'),
               Tab(
                   // icon: Icon(Icons.brightness_5_sharp),
-                  text: "Món ăn"),
+                  text: 'Món ăn'),
             ],
           ),
         ),
