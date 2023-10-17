@@ -1,9 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../router/router.dart';
+import '../widgets/button_orange.dart';
+import '../widgets/card_dish.dart';
 import '../widgets/home/home.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,30 +19,137 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            leadingWidth: 300,
-            leading: const TextField(
-              decoration: InputDecoration(
-                hintText: 'Search',
-                border: InputBorder.none,
-                prefixIcon: Icon(Icons.search),
+          toolbarHeight: 100,
+          surfaceTintColor: Colors.white,
+          centerTitle: true,
+          leadingWidth: 50,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: InkWell(
+                onTap: () => context.go(AppPath.home),
+                child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                      color: Color(0xddddddFF),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.chevron_left_sharp,
+                    ))),
+          ),
+          title: Container(
+            alignment: Alignment.centerLeft,
+            child: Stack(children: [
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  fillColor: const Color(0xddddddFF),
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  // conteprefixIconntPadding: EdgeInsets.only(right: 50),
+                  // prefixIconConstraints: BoxConstraints(
+                  //   minWidth: 80,
+                  // ),
+                  prefixIcon: GestureDetector(
+                    onTap: () => context.go(AppPath.search),
+                    child: const Icon(Icons.search),
+                  ),
+                ),
               ),
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.notifications),
-                onPressed: () => context.go(AppPath.notification),
-              ),
+              Positioned(
+                right: 10,
+                child: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.cancel)),
+              )
             ]),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: InkWell(
+                onTap: () => context.go(AppPath.notification),
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: const BoxDecoration(
+                    color: Color(0xddddddFF),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.notifications_none_sharp,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
         body: ListView(
           children: [
-            ButtonHomePage(
+            ButtonOrange(
               title: 'My Orders',
               icon: Icons.assignment,
+              onPressed: () => context.go(AppPath.orderdetail),
             ),
-            ButtonHomePage(title: 'Select Location', icon: Icons.location_on),
-            ListDish(title: 'Recent kitchen'),
-            ListDish(title: 'Favorite kitchen'),
-            ListDish(title: 'Top Trending kitchen'),
+            ButtonOrange(
+                title: 'Select Location',
+                icon: Icons.location_on,
+                onPressed: () => context.go(AppPath.kitchenmap)),
+            const ListTile(
+              title: Text("Recent Kitchen"),
+            ),
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return CardDish(
+                    onPressed: () => context.go(AppPath.mealdetail),
+                  );
+                },
+              ),
+            ),
+            const ListTile(
+              title: Text("Top Trending"),
+            ),
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return CardDish(
+                    onPressed: () => context.go(AppPath.mealdetail),
+                  );
+                },
+              ),
+            ),
+            const ListTile(
+              title: Text("Favorite kitchen"),
+            ),
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return CardDish(
+                    onPressed: () => context.go(AppPath.mealdetail),
+                  );
+                },
+              ),
+            ),
+            // ListDish(title: 'Recent kitchen'),
+            // ListDish(title: 'Favorite kitchen'),
+            // ListDish(title: 'Top Trending kitchen'),
           ],
         ));
   }
