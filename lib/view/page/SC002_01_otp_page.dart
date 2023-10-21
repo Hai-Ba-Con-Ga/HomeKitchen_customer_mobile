@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:pinput/pinput.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/base_state.dart';
@@ -145,8 +146,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             )),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 25, horizontal: 30),
+                            padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
                             child: Column(
                               children: [
                                 const Row(
@@ -191,17 +191,19 @@ class _OtpScreenState extends State<OtpScreen> {
                                 const SizedBox(height: 25),
                                 SizedBox(
                                   width: 350,
-                                  child: ButtonOrange(
-                                    title: 'Verify',
-                                    onPressed: () {
-                                      if (otpCode != null) {
-                                        verifyOtp(context, otpCode!);
-                                      } else {
-                                        showSnackBar(
-                                            context, 'Enter 6-Digit code');
-                                      }
-                                    },
-                                    icon: null,
+                                  child: Container(
+                                    margin: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                    child: ButtonOrange(
+                                      title: 'Verify',
+                                      onPressed: () {
+                                        if (otpCode != null) {
+                                          verifyOtp(context, otpCode!);
+                                        } else {
+                                          showSnackBar(context, 'Enter 6-Digit code');
+                                        }
+                                      },
+                                      icon: null,
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(height: 20),
@@ -242,10 +244,11 @@ class _OtpScreenState extends State<OtpScreen> {
         context: context,
         verificationId: widget.verificationId,
         userOtp: userOtp,
-        onSuccess: () => {
-              context.go(
-                AppPath.home,
-              )
-            });
+        onSuccess: () {
+          Logger().i('verifyOtp success -> go to home page');
+          context.go(
+            AppPath.home,
+          );
+        });
   }
 }
